@@ -1,20 +1,11 @@
-//impoer http from 'http'
-let http = require("http");
-let fs = require("fs");
-console.log("Starting server")
-http.createServer((req, res) => {
-    fs.readFile('index.html', (err, data) =>{
-        if(!err) {
-            res.writeHead(200, {
-                "Content-type": "text/html",
-            });
-            res.write(data)
-            return res.end();
-        }
-        res.write("Error while reading file");
-        return res.end();
-    });
-})
-.listen(3003);
+const express = require("express")
+const app = express();
+const port = 3000;
 
+app.get("/", (req, res) => {
+    res.send("Hellow World!");
+});
 
+app.listen(port, () => {
+    console.log(`Example app Listening on port ${port}`);
+});
